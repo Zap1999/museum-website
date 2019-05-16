@@ -9,11 +9,30 @@ import java.util.Objects;
  */
 public class Exhibit {
 
+    private int id;
     private String material;
     private String technique;
     private Author author;
     private Hall hall;
 
+
+    /**
+     * Gets id of an exhibit.
+     *
+     * @return Integer id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id of an exhibit.
+     *
+     * @param id Integer id.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets material of an exhibit.
