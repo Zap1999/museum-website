@@ -1,5 +1,7 @@
 package com.softserve.academy.museum.entities;
 
+import java.util.Objects;
+
 /**
  * Pojo class for 'author' entity from database.
  *
@@ -49,7 +51,7 @@ public class Author {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(firstname, lastname);
     }
 
     @Override

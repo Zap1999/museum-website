@@ -1,5 +1,7 @@
 package com.softserve.academy.museum.entities;
 
+import java.util.Objects;
+
 /**
  * Pojo class for 'employee' entity from database.
  *
@@ -68,7 +70,7 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(firstname, lastname, position);
     }
 
     @Override

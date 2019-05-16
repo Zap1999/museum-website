@@ -1,5 +1,7 @@
 package com.softserve.academy.museum.entities;
 
+import java.util.Objects;
+
 public class Hall {
 
     private String name;
@@ -46,7 +48,7 @@ public class Hall {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(name, employee);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.softserve.academy.museum.entities;
 
+import java.util.Objects;
+
 /**
  * Pojo class for 'excursion' entity from database.
  *
@@ -63,7 +65,7 @@ public class Excursion {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(start, employee, duration);
     }
 
     @Override
