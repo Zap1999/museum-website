@@ -24,9 +24,9 @@ public class AuthorDao {
             Author author = new Author();
 
             res.next();
-            author.setId(res.getInt(0));
-            author.setFirstname(res.getNString(1));
-            author.setLastname(res.getNString(2));
+            author.setId(res.getInt(1));
+            author.setFirstname(res.getNString(2));
+            author.setLastname(res.getNString(3));
 
             return author;
 

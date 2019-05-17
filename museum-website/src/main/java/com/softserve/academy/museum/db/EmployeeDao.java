@@ -26,10 +26,10 @@ public class EmployeeDao {
             Employee employee = new Employee();
 
             res.next();
-            employee.setId(Integer.parseInt(res.getNString(0)));
-            employee.setFirstname(res.getNString(1));
-            employee.setLastname(res.getNString(2));
-            employee.setPosition(Position.getPos(res.getNString(3)));
+            employee.setId(Integer.parseInt(res.getNString(1)));
+            employee.setFirstname(res.getNString(2));
+            employee.setLastname(res.getNString(3));
+            employee.setPosition(Position.getPos(res.getNString(4)));
 
             return employee;
 

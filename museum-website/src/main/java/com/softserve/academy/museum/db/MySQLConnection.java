@@ -13,7 +13,7 @@ public class MySQLConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/museum","root","qwer");
+                        "jdbc:mysql://localhost:3306/museum?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
                 return connection;
             } catch (ClassNotFoundException e) {
                 System.err.println("MySQL driver class not found.");
