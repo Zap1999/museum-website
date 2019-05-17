@@ -9,10 +9,29 @@ import java.util.Objects;
  */
 public class Employee {
 
+    private int id;
     private String firstname;
     private String lastname;
     private Position position;
 
+
+    /**
+     * Gets id of an employee.
+     *
+     * @return Integer id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id of an employee.
+     *
+     * @param id Integer id.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets first name of an employee.

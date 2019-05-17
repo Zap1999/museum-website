@@ -4,9 +4,28 @@ import java.util.Objects;
 
 public class Hall {
 
+    private int id;
     private String name;
     private Employee employee;
 
+
+    /**
+     * Gets id of a hall.
+     *
+     * @return Integer id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id of a hall.
+     *
+     * @param id Integer id.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets the name of the hall.
