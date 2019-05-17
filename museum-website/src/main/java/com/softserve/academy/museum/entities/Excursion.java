@@ -9,10 +9,29 @@ import java.util.Objects;
  */
 public class Excursion {
 
+    private int id;
     private String start;
     private Employee employee;
     private int duration;
 
+
+    /**
+     * Gets id of an excursion.
+     *
+     * @return Integer id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id of an excursion.
+     *
+     * @param id Integer id.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets date and time of an excursion start.
