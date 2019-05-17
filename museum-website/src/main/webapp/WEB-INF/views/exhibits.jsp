@@ -20,10 +20,10 @@
         <nav class="navbar navbar-expand-sm bg-info navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Exhibits</a>
+                    <a class="nav-link" href="/exhibits">Exhibits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/excurtions">Excursions</a>
+                    <a class="nav-link" href="/excursions">Excursions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/guides">Guides</a>
@@ -34,10 +34,12 @@
     <div id="main-div" class ="row">
         <div class = "col-md-4" >
             <div class="card">
-                <img class="card-img-top"  src="${pageContext.request.contextPath}/img/default-image.jpg" alt="Card image">
+                <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
                 <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text.</p>
+                    <h4 class="card-title">Exhibit name</h4>
+                    <p class="card-text">Material</p>
+                    <p class="card-text">Technique</p>
+                    <p class="card-text">Hall</p>
                 </div>
 
             </div>
@@ -46,10 +48,12 @@
 
         <div class = "col-md-4">
             <div class="card">
-                <img class="card-img-top"  src="${pageContext.request.contextPath}/img/default-image.jpg" alt="Card image">
+                <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
                 <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text.</p>
+                    <h4 class="card-title">Exhibit name</h4>
+                    <p class="card-text">Material</p>
+                    <p class="card-text">Technique</p>
+                    <p class="card-text">Hall</p>
                 </div>
 
             </div>
@@ -57,10 +61,12 @@
 
         <div class = "col-md-4">
             <div class="card">
-                <img class="card-img-top"  src="${pageContext.request.contextPath}/img/default-image.jpg" alt="Card image">
+                <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
                 <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text.</p>
+                    <h4 class="card-title">Exhibit name</h4>
+                    <p class="card-text">Material</p>
+                    <p class="card-text">Technique</p>
+                    <p class="card-text">Hall</p>
                 </div>
 
             </div>
