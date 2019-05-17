@@ -31,4 +31,13 @@
     <servlet-name>ExcursionsServlet</servlet-name>
     <url-pattern>/excursions</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EmployeesServlet</servlet-name>
+    <jsp-file>/WEB-INF/views/employees.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeesServlet</servlet-name>
+    <url-pattern>/employees</url-pattern>
+  </servlet-mapping>
 </web-app>

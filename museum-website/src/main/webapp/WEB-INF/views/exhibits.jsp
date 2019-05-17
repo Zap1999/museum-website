@@ -26,7 +26,7 @@
                     <a class="nav-link" href="/excursions">Excursions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/guides">Guides</a>
+                    <a class="nav-link" href="/employees">Employees</a>
                 </li>
             </ul>
         </nav>

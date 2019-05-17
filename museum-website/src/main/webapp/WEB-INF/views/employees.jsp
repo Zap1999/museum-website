@@ -22,10 +22,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/exhibits">Exhibits</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="/excursions">Excursions</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/employees">Employees</a>
             </li>
         </ul>
@@ -36,12 +36,12 @@
         <div class="col-md-1"></div>
         <div class = "col-md-10 row excursion-info">
             <div class="col-md-4">
-                <h3>Excursion name</h3>
+                <img class="img-fluid rounded" src="${pageContext.request.contextPath}/static/img/default-image.jpg" >
             </div>
             <div class="col-md-8">
-                <p>Excursion start</p>
-                <p>Excursion duration</p>
-                <p>Guide</p>
+                <h3>Employee name</h3>
+                <p>Employee position</p>
+
             </div>
         </div>
         <div class="col-md-1"></div>
@@ -49,15 +49,17 @@
         <div class="col-md-1"></div>
         <div class = "col-md-10 row excursion-info">
             <div class="col-md-4">
-                <h3>Excursion name</h3>
+                <img class="img-fluid rounded" src="${pageContext.request.contextPath}/static/img/default-image.jpg" >
             </div>
             <div class="col-md-8">
-                <p>Excursion start</p>
-                <p>Excursion duration</p>
-                <p>Guide</p>
+                <h3>Employee name</h3>
+                <p>Employee position</p>
+
             </div>
         </div>
         <div class="col-md-1"></div>
+
+
 
 
 
