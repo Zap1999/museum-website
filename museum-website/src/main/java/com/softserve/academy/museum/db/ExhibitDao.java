@@ -25,14 +25,14 @@ public class ExhibitDao {
             Exhibit exhibit = new Exhibit();
 
             res.next();
-            exhibit.setId(res.getInt(0));
-            exhibit.setName(res.getNString(1));
-            exhibit.setMaterial(res.getNString(2));
-            exhibit.setTechnique(res.getNString(3));
+            exhibit.setId(res.getInt(1));
+            exhibit.setName(res.getNString(2));
+            exhibit.setMaterial(res.getNString(3));
+            exhibit.setTechnique(res.getNString(4));
             exhibit.setAuthor(new AuthorDao().getAuthorById(
-                    res.getInt(4)));
-            exhibit.setHall(new HallDao().getHallById(
                     res.getInt(5)));
+            exhibit.setHall(new HallDao().getHallById(
+                    res.getInt(6)));
 
             return exhibit;
 
@@ -54,14 +54,14 @@ public class ExhibitDao {
             ArrayList<Exhibit> list = new ArrayList<>();
             while (res.next()) {
                 Exhibit exhibit = new Exhibit();
-                exhibit.setId(res.getInt(0));
-                exhibit.setName(res.getNString(1));
-                exhibit.setMaterial(res.getNString(2));
-                exhibit.setTechnique(res.getNString(3));
+                exhibit.setId(res.getInt(1));
+                exhibit.setName(res.getNString(2));
+                exhibit.setMaterial(res.getNString(3));
+                exhibit.setTechnique(res.getNString(4));
                 exhibit.setAuthor(
-                        new AuthorDao().getAuthorById(res.getInt(4)));
+                        new AuthorDao().getAuthorById(res.getInt(5)));
                 exhibit.setHall(
-                        new HallDao().getHallById(res.getInt(5)));
+                        new HallDao().getHallById(res.getInt(6)));
                 list.add(exhibit);
             }
 

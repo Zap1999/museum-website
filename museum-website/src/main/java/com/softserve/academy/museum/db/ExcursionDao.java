@@ -24,11 +24,11 @@ public class ExcursionDao {
             Excursion excursion = new Excursion();
 
             res.next();
-            excursion.setId(Integer.parseInt(res.getNString(0)));
-            excursion.setStart(res.getNString(1));
-            excursion.setDuration(res.getInt(2));
+            excursion.setId(Integer.parseInt(res.getNString(1)));
+            excursion.setStart(res.getNString(2));
+            excursion.setDuration(res.getInt(3));
             excursion.setEmployee(
-                    new EmployeeDao().getEmplyeeById(res.getInt(3)));
+                    new EmployeeDao().getEmplyeeById(res.getInt(4)));
 
             return excursion;
 
@@ -50,11 +50,11 @@ public class ExcursionDao {
             ArrayList<Excursion> list = new ArrayList<>();
             while (res.next()) {
                 Excursion excursion = new Excursion();
-                excursion.setId(Integer.parseInt(res.getNString(0)));
-                excursion.setStart(res.getNString(1));
-                excursion.setDuration(res.getInt(2));
+                excursion.setId(Integer.parseInt(res.getNString(1)));
+                excursion.setStart(res.getNString(2));
+                excursion.setDuration(res.getInt(3));
                 excursion.setEmployee(
-                        new EmployeeDao().getEmplyeeById(res.getInt(3)));
+                        new EmployeeDao().getEmplyeeById(res.getInt(4)));
                 list.add(excursion);
             }
 

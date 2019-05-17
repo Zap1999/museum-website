@@ -26,10 +26,10 @@ public class HallDao {
             Hall hall = new Hall();
 
             res.next();
-            hall.setId(res.getInt(0));
-            hall.setName(res.getNString(1));
+            hall.setId(res.getInt(1));
+            hall.setName(res.getNString(2));
             hall.setEmployee(
-                    new EmployeeDao().getEmplyeeById(res.getInt(2)));
+                    new EmployeeDao().getEmplyeeById(res.getInt(3)));
 
             return hall;
 
@@ -51,10 +51,10 @@ public class HallDao {
             ArrayList<Hall> list = new ArrayList<>();
             while (res.next()) {
                 Hall hall = new Hall();
-                hall.setId(res.getInt(0));
-                hall.setName(res.getNString(1));
+                hall.setId(res.getInt(1));
+                hall.setName(res.getNString(2));
                 hall.setEmployee(
-                        new EmployeeDao().getEmplyeeById(res.getInt(2)));
+                        new EmployeeDao().getEmplyeeById(res.getInt(3)));
                 list.add(hall);
             }
 
