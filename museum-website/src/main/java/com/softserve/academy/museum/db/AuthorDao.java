@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AuthorDao {
 
-    Connection connection = MySQLConnection.getConnection();
+    private Connection connection = MySQLConnection.getConnection();
 
     public Author getAuthorById(int id) {
         String query = "SELECT * "
@@ -24,9 +24,9 @@ public class AuthorDao {
             Author author = new Author();
 
             res.next();
-            author.setId(Integer.parseInt(res.getNString(0)));
+            author.setId(res.getInt(0));
             author.setFirstname(res.getNString(1));
-            author.setFirstname(res.getNString(2));
+            author.setLastname(res.getNString(2));
 
             return author;
 
@@ -48,9 +48,9 @@ public class AuthorDao {
             ArrayList<Author> list = new ArrayList<>();
             while (res.next()) {
                 Author author = new Author();
-                author.setId(Integer.parseInt(res.getNString(0)));
+                author.setId(res.getInt(0));
                 author.setFirstname(res.getNString(1));
-                author.setFirstname(res.getNString(2));
+                author.setLastname(res.getNString(2));
                 list.add(author);
             }
 
@@ -80,7 +80,7 @@ public class AuthorDao {
         }
     }
 
-    public void update(int id, Author author) {
+    public void update(Author author) {
         String query = "UPDATE author "
                 + "SET firstname = ?, lastname = ? "
                 + "WHERE id=?;";
@@ -89,11 +89,11 @@ public class AuthorDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, author.getFirstname());
             statement.setString(2, author.getLastname());
-            statement.setInt(1, id);
+            statement.setInt(3, author.getId());
             statement.execute();
 
         } catch (SQLException e) {
-            System.err.println("Cannot get author dao.");
+            System.err.println("Cannot 'update' author dao.");
             e.printStackTrace();
         }
     }
@@ -108,7 +108,7 @@ public class AuthorDao {
             statement.execute();
 
         } catch (SQLException e) {
-            System.err.println("Cannot get author dao.");
+            System.err.println("Cannot execute 'delete' author dao.");
             e.printStackTrace();
         }
     }

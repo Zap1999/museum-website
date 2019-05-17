@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Exhibit {
 
     private int id;
+    private String name;
     private String material;
     private String technique;
     private Author author;
@@ -105,6 +106,24 @@ public class Exhibit {
      */
     public void setHall(Hall hall) {
         this.hall = hall;
+    }
+
+    /**
+     * Gets the name of exhibit.
+     *
+     * @return String name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of an exhibit.
+     *
+     * @param name String name of an exhibit.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
