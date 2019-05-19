@@ -4,6 +4,13 @@ import java.sql.*;
 
 public class MySQLConnection {
 
+    private static final String URL = "jdbc:mysql://localhost:3306/museum"
+            + "?useJDBCCompliantTimezoneShift=true"
+            + "&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
+
+
     private static Connection connection;
 
     public static Connection getConnection() {
@@ -11,14 +18,8 @@ public class MySQLConnection {
             return connection;
         } else {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/museum","root","root");
+                connection = DriverManager.getConnection(URL,USER,PASSWORD);
                 return connection;
-            } catch (ClassNotFoundException e) {
-                System.err.println("MySQL driver class not found.");
-                e.printStackTrace();
-                return null;
             } catch (SQLException e) {
                 System.err.println("Connection to MySQL DB failed.");
                 e.printStackTrace();
