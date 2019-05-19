@@ -9,9 +9,27 @@ import java.util.Objects;
  */
 public class Author {
 
+    private int id;
     private String firstname;
     private String lastname;
 
+    /**
+     * Gets id of an author.
+     *
+     * @return Integer id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id of an author.
+     *
+     * @param id Integer id.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets first name of an author.

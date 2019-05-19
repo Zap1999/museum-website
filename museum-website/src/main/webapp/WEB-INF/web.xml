@@ -6,38 +6,34 @@
 
 
   <servlet>
-    <servlet-name>TestServlet</servlet-name>
-    <jsp-file>/index.jsp</jsp-file>
+    <servlet-name>ExhibitsServlet</servlet-name>
+    <servlet-class>com.softserve.academy.museum.servlets.ExhibitsServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/test</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>ExhibitServlet</servlet-name>
-    <jsp-file>/WEB-INF/views/exhibits.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ExhibitServlet</servlet-name>
-    <url-pattern>/exhibits</url-pattern>
-  </servlet-mapping>
 
   <servlet>
     <servlet-name>ExcursionsServlet</servlet-name>
     <jsp-file>/WEB-INF/views/excursions.jsp</jsp-file>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>ExcursionsServlet</servlet-name>
-    <url-pattern>/excursions</url-pattern>
-  </servlet-mapping>
 
   <servlet>
     <servlet-name>EmployeesServlet</servlet-name>
     <jsp-file>/WEB-INF/views/employees.jsp</jsp-file>
   </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ExcursionsServlet</servlet-name>
+    <url-pattern>/excursions</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>EmployeesServlet</servlet-name>
     <url-pattern>/employees</url-pattern>
   </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ExhibitsServlet</servlet-name>
+    <url-pattern>/exhibits</url-pattern>
+
+  </servlet-mapping>
+
 </web-app>
