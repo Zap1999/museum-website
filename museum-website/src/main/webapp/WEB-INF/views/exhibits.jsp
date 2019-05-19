@@ -1,4 +1,4 @@
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Exhibits</title>
@@ -32,11 +32,12 @@
         </nav>
     </div>
     <div id="main-div" class ="row">
+        <c:forEach items="${exhibits}" var="exhibit">
         <div class = "col-md-4" >
             <div class="card">
                 <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
                 <div class="card-body">
-                    <h4 class="card-title">Exhibit name</h4>
+                    <h4 class="card-title"><c:out value="${exhibit.name}"/></h4>
                     <p class="card-text">Material</p>
                     <p class="card-text">Technique</p>
                     <p class="card-text">Hall</p>
@@ -44,33 +45,10 @@
 
             </div>
         </div>
+        </c:forEach>
 
 
-        <div class = "col-md-4">
-            <div class="card">
-                <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
-                <div class="card-body">
-                    <h4 class="card-title">Exhibit name</h4>
-                    <p class="card-text">Material</p>
-                    <p class="card-text">Technique</p>
-                    <p class="card-text">Hall</p>
-                </div>
 
-            </div>
-        </div>
-
-        <div class = "col-md-4">
-            <div class="card">
-                <img class="card-img-top"  src="${pageContext.request.contextPath}/static/img/default-image.jpg" alt="Card image">
-                <div class="card-body">
-                    <h4 class="card-title">Exhibit name</h4>
-                    <p class="card-text">Material</p>
-                    <p class="card-text">Technique</p>
-                    <p class="card-text">Hall</p>
-                </div>
-
-            </div>
-        </div>
 
     </div>
 
