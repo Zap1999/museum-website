@@ -12,7 +12,7 @@
 
   <servlet>
     <servlet-name>ExcursionsServlet</servlet-name>
-    <jsp-file>/WEB-INF/views/excursions.jsp</jsp-file>
+    <servlet-class>com.softserve.academy.museum.servlets.ExcursionsServlet</servlet-class>
   </servlet>
 
   <servlet>
