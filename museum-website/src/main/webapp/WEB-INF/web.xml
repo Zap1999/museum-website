@@ -5,35 +5,50 @@
          version="4.0">
 
 
-  <servlet>
-    <servlet-name>ExhibitsServlet</servlet-name>
-    <servlet-class>com.softserve.academy.museum.servlets.ExhibitsServlet</servlet-class>
-  </servlet>
+    <listener>
+        <listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>Tiles Dispatch Servlet</servlet-name>
+        <servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Tiles Dispatch Servlet</servlet-name>
+        <url-pattern>*.tiles</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>ExcursionsServlet</servlet-name>
-    <servlet-class>com.softserve.academy.museum.servlets.ExcursionsServlet</servlet-class>
-  </servlet>
+    
 
- <servlet>
-   <servlet-name>EmployeesServlet</servlet-name>
-   <servlet-class>com.softserve.academy.museum.servlets.EmployeesServlet</servlet-class>
- </servlet>
+    <servlet>
+        <servlet-name>ExhibitsServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>ExcursionsServlet</servlet-name>
-    <url-pattern>/excursions</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>ExcursionsServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExcursionsServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>EmployeesServlet</servlet-name>
-    <url-pattern>/employees</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>EmployeesServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.EmployeesServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>ExhibitsServlet</servlet-name>
-    <url-pattern>/exhibits</url-pattern>
+    <servlet-mapping>
+        <servlet-name>ExcursionsServlet</servlet-name>
+        <url-pattern>/excursions</url-pattern>
+    </servlet-mapping>
 
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeesServlet</servlet-name>
+        <url-pattern>/employees</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExhibitsServlet</servlet-name>
+        <url-pattern>/exhibits</url-pattern>
+    </servlet-mapping>
+
+
 
 </web-app>
