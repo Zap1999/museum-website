@@ -15,21 +15,23 @@ public class EmployeeDao {
     private Connection connection = MySQLConnection.getConnection();
 
     public Employee getEmplyeeById(int id) {
-        String query = "SELECT * "
-                + "FROM employee "
-                + "WHERE id=?;";
+        String query = "SELECT employee.firstname, employee.lastname,"
+                + " position.name "
+                + "FROM employee join position on employee.position = position.id "
+                + "WHERE employee.id=?;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet res = statement.executeQuery();
+            ResultSet employeeData = statement.executeQuery();
+            employeeData.next();
+
             Employee employee = new Employee();
 
-            res.next();
-            employee.setId(res.getInt(1));
-            employee.setFirstname(res.getNString(2));
-            employee.setLastname(res.getNString(3));
-            employee.setPosition(Position.getPos(Integer.toString(res.getInt(4))));
+            employee.setId(id);
+            employee.setFirstname(employeeData.getNString("employee.firstname"));
+            employee.setLastname(employeeData.getNString("employee.lastname"));
+            employee.setPosition(Position.getPos(employeeData.getNString("position.name")));
 
             return employee;
 
@@ -42,20 +44,26 @@ public class EmployeeDao {
     }
 
     public ArrayList<Employee> getAll() {
-        String query = "SELECT * FROM employee ";
+        String query = "SELECT employee.id, employee.firstname, employee.lastname," 
+                + "position.name " 
+                + "FROM employee join position on employee.position = position.id";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet res = statement.executeQuery();
+            ResultSet employeesData = statement.executeQuery();
 
             ArrayList<Employee> list = new ArrayList<>();
-            while (res.next()) {
+            while (employeesData.next()) {
+
                 Employee employee = new Employee();
-                employee.setId(res.getInt(1));
-                employee.setFirstname(res.getNString(2));
-                employee.setLastname(res.getNString(3));
-                employee.setPosition(Position.getPosById(res.getInt(4)));
+
+                employee.setId(employeesData.getInt("employee.id"));
+                employee.setFirstname(employeesData.getNString("employee.firstname"));
+                employee.setLastname(employeesData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(employeesData.getNString("position.name")));
+
                 list.add(employee);
+
             }
 
             return list;

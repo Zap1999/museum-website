@@ -8,7 +8,7 @@ public class MySQLConnection {
             + "?useJDBCCompliantTimezoneShift=true"
             + "&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "qwer";
 
 
     private static Connection connection;
