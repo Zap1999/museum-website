@@ -26,10 +26,10 @@ public class EmployeeDao {
             Employee employee = new Employee();
 
             res.next();
-            employee.setId(Integer.parseInt(res.getNString(1)));
+            employee.setId(res.getInt(1));
             employee.setFirstname(res.getNString(2));
             employee.setLastname(res.getNString(3));
-            employee.setPosition(Position.getPos(res.getNString(4)));
+            employee.setPosition(Position.getPos(Integer.toString(res.getInt(4))));
 
             return employee;
 
@@ -41,7 +41,7 @@ public class EmployeeDao {
 
     }
 
-    public List<Employee> getAll() {
+    public ArrayList<Employee> getAll() {
         String query = "SELECT * FROM employee ";
         try {
 
@@ -54,7 +54,7 @@ public class EmployeeDao {
                 employee.setId(res.getInt(1));
                 employee.setFirstname(res.getNString(2));
                 employee.setLastname(res.getNString(3));
-                employee.setPosition(Position.getPos(res.getNString(4)));
+                employee.setPosition(Position.getPosById(res.getInt(4)));
                 list.add(employee);
             }
 

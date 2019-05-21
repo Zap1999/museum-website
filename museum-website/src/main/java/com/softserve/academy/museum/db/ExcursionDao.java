@@ -50,8 +50,8 @@ public class ExcursionDao {
             ArrayList<Excursion> list = new ArrayList<>();
             while (res.next()) {
                 Excursion excursion = new Excursion();
-                excursion.setId(Integer.parseInt(res.getNString(1)));
-                excursion.setStart(res.getNString(2));
+                excursion.setId(res.getInt(1));
+                excursion.setStart(res.getTimestamp(2).toString());
                 excursion.setDuration(res.getInt(3));
                 excursion.setEmployee(
                         new EmployeeDao().getEmplyeeById(res.getInt(4)));
