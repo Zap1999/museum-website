@@ -21,7 +21,7 @@ public class ExhibitsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Exhibit> exhibits = new ExhibitDao().getAll();
         request.setAttribute("exhibits", exhibits);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/exhibits.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/museum-website.exhibits.tiles");
         rd.forward(request,response);
     }
 }

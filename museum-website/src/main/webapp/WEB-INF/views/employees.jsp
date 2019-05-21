@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div id="main-div" >
     <div id="excursions-container" class ="row">
         <c:forEach items="${employees}" var="employee">
