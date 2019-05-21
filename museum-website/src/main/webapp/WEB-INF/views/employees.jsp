@@ -41,7 +41,7 @@
             <div class="col-md-1"></div>
             <div class = "col-md-10 row excursion-info">
                 <div class="col-md-4">
-                    <img class="img-fluid rounded" src="${pageContext.request.contextPath}/static/img/default-image.jpg" >
+                    <img class="img-fluid rounded" src="${pageContext.request.contextPath}/static/img/<c:out value="${employee.image}"/>" >
                 </div>
                 <div class="col-md-8">
                     <h3><c:out value="${employee.firstname}"/>

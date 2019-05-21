@@ -16,7 +16,7 @@ public class EmployeeDao {
 
     public Employee getEmplyeeById(int id) {
         String query = "SELECT employee.firstname, employee.lastname,"
-                + " position.name "
+                + " position.name, employee.image "
                 + "FROM employee join position on employee.position = position.id "
                 + "WHERE employee.id=?;";
         try {
@@ -32,6 +32,7 @@ public class EmployeeDao {
             employee.setFirstname(employeeData.getNString("employee.firstname"));
             employee.setLastname(employeeData.getNString("employee.lastname"));
             employee.setPosition(Position.getPos(employeeData.getNString("position.name")));
+            employee.setImage(employeeData.getNString("employee.image"));
 
             return employee;
 
@@ -45,7 +46,7 @@ public class EmployeeDao {
 
     public ArrayList<Employee> getAll() {
         String query = "SELECT employee.id, employee.firstname, employee.lastname," 
-                + "position.name " 
+                + "position.name, employee.image "
                 + "FROM employee join position on employee.position = position.id";
         try {
 
@@ -61,6 +62,7 @@ public class EmployeeDao {
                 employee.setFirstname(employeesData.getNString("employee.firstname"));
                 employee.setLastname(employeesData.getNString("employee.lastname"));
                 employee.setPosition(Position.getPos(employeesData.getNString("position.name")));
+                employee.setImage(employeesData.getNString("employee.image"));
 
                 list.add(employee);
 

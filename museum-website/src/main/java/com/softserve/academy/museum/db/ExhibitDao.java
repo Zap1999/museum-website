@@ -14,7 +14,7 @@ public class ExhibitDao {
 
     public Exhibit getExhibitById(int id) {
         String query = "SELECT exhibit.name, exhibit.material, "
-                + "exhibit.technique, author.id, author.firstname, author.lastname, "
+                + "exhibit.technique, exhibit.image, author.id, author.firstname, author.lastname, "
                 + "hall.id, hall.name, employee.id, employee.firstname, employee.lastname, position.name "
                 + "FROM exhibit join author on exhibit.author_id = author.id "
                 + "join hall on exhibit.hall_id = hall.id "
@@ -52,6 +52,7 @@ public class ExhibitDao {
             exhibit.setTechnique(exhibitData.getNString("exhibit.technique"));
             exhibit.setAuthor(author);
             exhibit.setHall(hall);
+            exhibit.setImage(exhibitData.getNString("exhibit.image"));
 
             return exhibit;
 
@@ -65,7 +66,7 @@ public class ExhibitDao {
 
     public ArrayList<Exhibit> getAll() {
         String query = "SELECT exhibit.id, exhibit.name, exhibit.material, "
-                + "exhibit.technique, author.id, author.firstname, author.lastname, "
+                + "exhibit.technique, exhibit.image, author.id, author.firstname, author.lastname, "
                 + "hall.id, hall.name, employee.id, employee.firstname, employee.lastname, position.name "
                 + "FROM exhibit join author on exhibit.author_id = author.id "
                 + "join hall on exhibit.hall_id = hall.id "
@@ -102,6 +103,7 @@ public class ExhibitDao {
                 exhibit.setTechnique(exhibitData.getNString("exhibit.technique"));
                 exhibit.setAuthor(author);
                 exhibit.setHall(hall);
+                exhibit.setImage(exhibitData.getNString("exhibit.image"));
 
                 list.add(exhibit);
             }
