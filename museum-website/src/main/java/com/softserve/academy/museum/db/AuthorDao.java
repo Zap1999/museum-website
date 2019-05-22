@@ -13,20 +13,21 @@ public class AuthorDao {
     private Connection connection = MySQLConnection.getConnection();
 
     public Author getAuthorById(int id) {
-        String query = "SELECT * "
+        String query = "SELECT author.id, author.firstname, author.lastname "
                 + "FROM author "
                 + "WHERE id=?;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet res = statement.executeQuery();
+            ResultSet authorData = statement.executeQuery();
+            authorData.next();
+
             Author author = new Author();
 
-            res.next();
-            author.setId(res.getInt(1));
-            author.setFirstname(res.getNString(2));
-            author.setLastname(res.getNString(3));
+            author.setId(authorData.getInt("author.id"));
+            author.setFirstname(authorData.getNString("author.firstname"));
+            author.setLastname(authorData.getNString("author.lastname"));
 
             return author;
 
@@ -39,19 +40,24 @@ public class AuthorDao {
     }
 
     public ArrayList<Author> getAll() {
-        String query = "SELECT * FROM author ";
+        String query = "SELECT author.id, author.firstname, author.lastname "
+                + "FROM author ";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet res = statement.executeQuery();
+            ResultSet authorsData = statement.executeQuery();
 
             ArrayList<Author> list = new ArrayList<>();
-            while (res.next()) {
+            while (authorsData.next()) {
+
                 Author author = new Author();
-                author.setId(res.getInt(1));
-                author.setFirstname(res.getNString(2));
-                author.setLastname(res.getNString(3));
+
+                author.setId(authorsData.getInt("author.id"));
+                author.setFirstname(authorsData.getNString("author.firstname"));
+                author.setLastname(authorsData.getNString("author.lastname"));
+
                 list.add(author);
+
             }
 
             return list;

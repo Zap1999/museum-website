@@ -25,17 +25,6 @@ public enum Position {
         }
     }
 
-    public static Position getPosById(int posId){
-        if (posId == GUIDE.ordinal() + 1) {
-            return GUIDE;
-        } else if (posId == MANAGER.ordinal() + 1) {
-            return MANAGER;
-        } else {
-            return null;
-        }
-    }
-
-
 
     @Override
     public String toString(){

@@ -13,6 +13,7 @@ public class Employee {
     private String firstname;
     private String lastname;
     private Position position;
+    private String image;
 
 
     /**
@@ -107,4 +108,11 @@ public class Employee {
                 && (employee.position.equals(position));
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
