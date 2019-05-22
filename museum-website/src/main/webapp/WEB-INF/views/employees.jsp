@@ -4,7 +4,7 @@
         <c:forEach items="${employees}" var="employee">
             <div class="col-md-1"></div>
             <div class = "col-md-10 row excursion-info">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <img class="img-fluid rounded" src="${pageContext.request.contextPath}/static/img/<c:out value="${employee.image}"/>" >
                 </div>
                 <div class="col-md-8">
