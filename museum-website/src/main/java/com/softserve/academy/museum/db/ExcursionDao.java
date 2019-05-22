@@ -1,6 +1,8 @@
 package com.softserve.academy.museum.db;
 
+import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Excursion;
+import com.softserve.academy.museum.entities.Position;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,22 +15,30 @@ public class ExcursionDao {
     private Connection connection = MySQLConnection.getConnection();
 
     public Excursion getExcursionById(int id) {
-        String query = "SELECT * "
-                + "FROM excursion "
-                + "WHERE id=?;";
+        String query = "SELECT excursion.start, excursion.duration, employee.id,"
+                + "employee.firstname, employee.lastname, position.name "
+                + "FROM excursion join employee on excursion.employee_id = employee.id "
+                + "join position on employee.position = position.id "
+                + "WHERE excursion.id=?;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet res = statement.executeQuery();
-            Excursion excursion = new Excursion();
+            ResultSet excursionData = statement.executeQuery();
+            excursionData.next();
 
-            res.next();
-            excursion.setId(Integer.parseInt(res.getNString(1)));
-            excursion.setStart(res.getNString(2));
-            excursion.setDuration(res.getInt(3));
-            excursion.setEmployee(
-                    new EmployeeDao().getEmplyeeById(res.getInt(4)));
+            Excursion excursion = new Excursion();
+            Employee employee = new Employee();
+
+            employee.setId(excursionData.getInt("employee.id"));
+            employee.setFirstname(excursionData.getNString("employee.firstname"));
+            employee.setLastname(excursionData.getNString("employee.lastname"));
+            employee.setPosition(Position.getPos(excursionData.getNString("position.name")));
+
+            excursion.setId(id);
+            excursion.setStart(excursionData.getTimestamp("excursion.start").toString());
+            excursion.setDuration(excursionData.getInt("excursion.duration"));
+            excursion.setEmployee(employee);
 
             return excursion;
 
@@ -41,21 +51,33 @@ public class ExcursionDao {
     }
 
     public ArrayList<Excursion> getAll() {
-        String query = "SELECT * FROM excursion ";
+        String query = "SELECT excursion.id, excursion.start, excursion.duration, "
+                + "employee.id, employee.firstname, employee.lastname, position.name "
+                + "FROM excursion join employee on excursion.employee_id = employee.id "
+                + "join position on employee.position = position.id;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet res = statement.executeQuery();
+            ResultSet excursionsData = statement.executeQuery();
 
             ArrayList<Excursion> list = new ArrayList<>();
-            while (res.next()) {
+            while (excursionsData.next()) {
+
                 Excursion excursion = new Excursion();
-                excursion.setId(res.getInt(1));
-                excursion.setStart(res.getTimestamp(2).toString());
-                excursion.setDuration(res.getInt(3));
-                excursion.setEmployee(
-                        new EmployeeDao().getEmplyeeById(res.getInt(4)));
+                Employee employee = new Employee();
+
+                employee.setId(excursionsData.getInt("employee.id"));
+                employee.setFirstname(excursionsData.getNString("employee.firstname"));
+                employee.setLastname(excursionsData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(excursionsData.getNString("position.name")));
+
+                excursion.setId(excursionsData.getInt("excursion.id"));
+                excursion.setStart(excursionsData.getTimestamp("excursion.start").toString());
+                excursion.setDuration(excursionsData.getInt("excursion.duration"));
+                excursion.setEmployee(employee);
+
                 list.add(excursion);
+
             }
 
             return list;

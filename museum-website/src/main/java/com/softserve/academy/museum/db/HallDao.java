@@ -3,6 +3,7 @@ package com.softserve.academy.museum.db;
 import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Exhibit;
 import com.softserve.academy.museum.entities.Hall;
+import com.softserve.academy.museum.entities.Position;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,21 +16,29 @@ public class HallDao {
     private Connection connection = MySQLConnection.getConnection();
 
     public Hall getHallById(int id) {
-        String query = "SELECT * "
-                + "FROM hall "
+        String query = "SELECT hall.name, employee.id, employee.firstname, "
+                + "employee.lastname, position.name "
+                + "FROM hall join employee on hall.employee_id = employee.id "
+                + "join position on employee.position = position.id "
                 + "WHERE id=?;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet res = statement.executeQuery();
-            Hall hall = new Hall();
+            ResultSet hallData = statement.executeQuery();
+            hallData.next();
 
-            res.next();
-            hall.setId(res.getInt(1));
-            hall.setName(res.getNString(2));
-            hall.setEmployee(
-                    new EmployeeDao().getEmplyeeById(res.getInt(3)));
+            Hall hall = new Hall();
+            Employee employee = new Employee();
+
+            employee.setId(hallData.getInt("employee.id"));
+            employee.setFirstname(hallData.getNString("employee.firstname"));
+            employee.setLastname(hallData.getNString("employee.lastname"));
+            employee.setPosition(Position.getPos(hallData.getNString("position.name")));
+
+            hall.setId(id);
+            hall.setName(hallData.getNString("hall.name"));
+            hall.setEmployee(employee);
 
             return hall;
 
@@ -42,19 +51,30 @@ public class HallDao {
     }
 
     public ArrayList<Hall> getAll() {
-        String query = "SELECT * FROM hall ";
+        String query = "SELECT hall.id, hall.name, employee.id, employee.firstname, "
+                + "employee.lastname, position.name "
+                + "FROM hall join employee on hall.employee_id = employee.id "
+                + "join position on employee.position = position.id ";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet res = statement.executeQuery();
+            ResultSet hallData = statement.executeQuery();
 
             ArrayList<Hall> list = new ArrayList<>();
-            while (res.next()) {
+            while (hallData.next()) {
+
                 Hall hall = new Hall();
-                hall.setId(res.getInt(1));
-                hall.setName(res.getNString(2));
-                hall.setEmployee(
-                        new EmployeeDao().getEmplyeeById(res.getInt(3)));
+                Employee employee = new Employee();
+
+                employee.setId(hallData.getInt("employee.id"));
+                employee.setFirstname(hallData.getNString("employee.firstname"));
+                employee.setLastname(hallData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(hallData.getNString("position.name")));
+
+                hall.setId(hallData.getInt("hall.id"));
+                hall.setName(hallData.getNString("hall.name"));
+                hall.setEmployee(employee);
+
                 list.add(hall);
             }
 

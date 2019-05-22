@@ -15,6 +15,7 @@ public class Exhibit {
     private String technique;
     private Author author;
     private Hall hall;
+    private String image;
 
 
     /**
@@ -147,4 +148,11 @@ public class Exhibit {
                 && (exhibit.hall.equals(hall)));
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
