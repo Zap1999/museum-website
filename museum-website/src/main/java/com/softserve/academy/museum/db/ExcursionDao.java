@@ -15,7 +15,7 @@ public class ExcursionDao {
     private Connection connection = MySQLConnection.getConnection();
 
     public Excursion getExcursionById(int id) {
-        String query = "SELECT excursion.start, excursion.duration, employee.id,"
+        String query = "SELECT excursion.name, excursion.start, excursion.duration, employee.id,"
                 + "employee.firstname, employee.lastname, position.name "
                 + "FROM excursion join employee on excursion.employee_id = employee.id "
                 + "join position on employee.position = position.id "
@@ -51,7 +51,7 @@ public class ExcursionDao {
     }
 
     public ArrayList<Excursion> getAll() {
-        String query = "SELECT excursion.id, excursion.start, excursion.duration, "
+        String query = "SELECT excursion.id, excursion.name, excursion.start, excursion.duration, "
                 + "employee.id, employee.firstname, employee.lastname, position.name "
                 + "FROM excursion join employee on excursion.employee_id = employee.id "
                 + "join position on employee.position = position.id;";
@@ -72,6 +72,7 @@ public class ExcursionDao {
                 employee.setPosition(Position.getPos(excursionsData.getNString("position.name")));
 
                 excursion.setId(excursionsData.getInt("excursion.id"));
+                excursion.setName(excursionsData.getNString("excursion.name"));
                 excursion.setStart(excursionsData.getTimestamp("excursion.start").toString());
                 excursion.setDuration(excursionsData.getInt("excursion.duration"));
                 excursion.setEmployee(employee);
@@ -90,15 +91,16 @@ public class ExcursionDao {
     }
 
     public void save(Excursion excursion) {
-        String query = "INSERT INTO excursion(id, start, duration, employee_id) "
-                + "VALUES (?, ?, ?, ?) ";
+        String query = "INSERT INTO excursion(id, name, start, duration, employee_id) "
+                + "VALUES (?, ?, ?, ?, ?) ";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, excursion.getId());
-            statement.setString(2, excursion.getStart());
-            statement.setInt(3, excursion.getDuration());
-            statement.setInt(4, excursion.getEmployee().getId());
+            statement.setString(2, excursion.getName());
+            statement.setString(3, excursion.getStart());
+            statement.setInt(4, excursion.getDuration());
+            statement.setInt(5, excursion.getEmployee().getId());
             statement.execute();
 
         } catch (SQLException e) {
@@ -109,15 +111,16 @@ public class ExcursionDao {
 
     public void update(Excursion excursion) {
         String query = "UPDATE excursion "
-                + "SET start = ?, duration = ?, employee_id = ? "
+                + "SET name = ?, start = ?, duration = ?, employee_id = ? "
                 + "WHERE id=?;";
         try {
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, excursion.getStart());
-            statement.setInt(2, excursion.getDuration());
-            statement.setInt(3, excursion.getEmployee().getId());
-            statement.setInt(4, excursion.getId());
+            statement.setString(1, excursion.getName());
+            statement.setString(2, excursion.getStart());
+            statement.setInt(3, excursion.getDuration());
+            statement.setInt(4, excursion.getEmployee().getId());
+            statement.setInt(5, excursion.getId());
             statement.execute();
 
         } catch (SQLException e) {

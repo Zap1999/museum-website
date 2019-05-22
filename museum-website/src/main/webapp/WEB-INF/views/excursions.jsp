@@ -7,7 +7,7 @@
             <div class="col-md-1"></div>
             <div class = "col-md-10 row excursion-info">
                 <div class="col-md-4">
-                    <h3>Excursion name</h3>
+                    <h3><c:out value="${excursion.name}"/></h3>
                 </div>
                 <div class="col-md-8">
                     <p>Excursion start: <c:out value="${excursion.start}"/></p>

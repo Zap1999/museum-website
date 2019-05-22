@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class Excursion {
 
+    private String name;
     private int id;
     private String start;
     private Employee employee;
@@ -102,4 +103,11 @@ public class Excursion {
                 && (excursion.duration == duration);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
