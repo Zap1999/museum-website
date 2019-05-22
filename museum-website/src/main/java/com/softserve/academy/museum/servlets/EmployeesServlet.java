@@ -25,7 +25,7 @@ public class EmployeesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Employee> employees = new EmployeeDao().getAll();
         request.setAttribute("employees", employees);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/museum-website.employees.tiles");
         rd.forward(request,response);
     }
 }
