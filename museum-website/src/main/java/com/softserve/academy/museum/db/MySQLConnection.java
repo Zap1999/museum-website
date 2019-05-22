@@ -4,10 +4,12 @@ import com.softserve.academy.museum.util.PropertiesUtil;
 
 import java.sql.*;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 public class MySQLConnection {
 
     private static final Properties DB_PROPERTIES = PropertiesUtil.getProperties();
+    private static final Logger LOGGER = Logger.getLogger(MySQLConnection.class);
 
     private static final String CLASS = DB_PROPERTIES.getProperty("jdbc.driverClassName");
     private static final String URL = DB_PROPERTIES.getProperty("db.url");
@@ -28,6 +30,7 @@ public class MySQLConnection {
             } catch (Exception e) {
                 System.err.println("Connection to MySQL DB failed.");
                 e.printStackTrace();
+                LOGGER.error("Connection",e);
                 return null;
             }
         }

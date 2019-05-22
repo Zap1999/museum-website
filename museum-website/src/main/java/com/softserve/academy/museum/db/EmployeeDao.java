@@ -2,6 +2,7 @@ package com.softserve.academy.museum.db;
 
 import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Position;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class EmployeeDao {
 
+    private static final Logger LOGGER = Logger.getLogger(EmployeeDao.class);
     private Connection connection = MySQLConnection.getConnection();
 
     public Employee getEmplyeeById(int id) {
@@ -38,6 +40,7 @@ public class EmployeeDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getEmployeeById' employee dao.");
+            LOGGER.error("Cannot execute 'getEmployeeById' employee dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -72,6 +75,7 @@ public class EmployeeDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getAll' employee dao.");
+            LOGGER.error("Cannot execute 'getAll' employee dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -92,6 +96,7 @@ public class EmployeeDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'save' employee dao.");
+            LOGGER.error("Cannot execute 'save' employee dao.", e);
             e.printStackTrace();
         }
     }
@@ -111,6 +116,7 @@ public class EmployeeDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot 'update' employee dao.");
+            LOGGER.error("Cannot execute 'update' employee dao.", e);
             e.printStackTrace();
         }
     }
@@ -126,6 +132,7 @@ public class EmployeeDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'delete' employee dao.");
+            LOGGER.error("Cannot execute 'delete' employee dao.", e);
             e.printStackTrace();
         }
     }
