@@ -59,8 +59,8 @@ public class ExhibitDao {
             return exhibit;
 
         } catch (SQLException e) {
-            System.err.println("Cannot execute 'getAuthorById' author dao.");
-            LOGGER.error("Cannot execute 'getAuthorById' author dao.", e);
+            System.err.println("Cannot execute 'getAuthorById' exhibit dao.");
+            LOGGER.error("Cannot execute 'getAuthorById' exhibit dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -114,8 +114,63 @@ public class ExhibitDao {
             return list;
 
         } catch (SQLException e) {
-            System.err.println("Cannot execute 'getAll' author dao.");
-            LOGGER.error("Cannot execute 'getAll' author dao.", e);
+            System.err.println("Cannot execute 'getAll' exhibit dao.");
+            LOGGER.error("Cannot execute 'getAll' exhibit dao.", e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Exhibit> getByAuthorId(int authorId) {
+        String query = "SELECT exhibit.id, exhibit.name, exhibit.material, "
+                + "exhibit.technique, exhibit.image, author.id, author.firstname, author.lastname, "
+                + "hall.id, hall.name, employee.id, employee.firstname, employee.lastname, position.name "
+                + "FROM exhibit join author on exhibit.author_id = author.id "
+                + "join hall on exhibit.hall_id = hall.id "
+                + "join employee on hall.employee_id = employee.id "
+                + "join position on employee.position = position.id "
+                + "WHERE author.id = ?";
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, authorId);
+            ResultSet exhibitData = statement.executeQuery();
+
+            ArrayList<Exhibit> list = new ArrayList<>();
+            while (exhibitData.next()) {
+                Employee employee = new Employee();
+                Author author = new Author();
+                Hall hall = new Hall();
+                Exhibit exhibit = new Exhibit();
+
+                employee.setId(exhibitData.getInt("employee.id"));
+                employee.setFirstname(exhibitData.getNString("employee.firstname"));
+                employee.setLastname(exhibitData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(exhibitData.getNString("position.name")));
+
+                hall.setId(exhibitData.getInt("hall.id"));
+                hall.setName(exhibitData.getNString("hall.name"));
+                hall.setEmployee(employee);
+
+                author.setId(exhibitData.getInt("author.id"));
+                author.setFirstname(exhibitData.getNString("author.firstname"));
+                author.setLastname(exhibitData.getNString("author.lastname"));
+
+                exhibit.setId(exhibitData.getInt("exhibit.id"));
+                exhibit.setName(exhibitData.getNString("exhibit.name"));
+                exhibit.setMaterial(exhibitData.getNString("exhibit.material"));
+                exhibit.setTechnique(exhibitData.getNString("exhibit.technique"));
+                exhibit.setAuthor(author);
+                exhibit.setHall(hall);
+                exhibit.setImage(exhibitData.getNString("exhibit.image"));
+
+                list.add(exhibit);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            System.err.println("Cannot execute 'getByAuthorId' exhibit dao.");
+            LOGGER.error("Cannot execute 'getByAuthorId' exhibit dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -137,8 +192,8 @@ public class ExhibitDao {
             statement.execute();
 
         } catch (SQLException e) {
-            System.err.println("Cannot execute 'save' author dao.");
-            LOGGER.error("Cannot execute 'save' author dao.", e);
+            System.err.println("Cannot execute 'save' exhibit dao.");
+            LOGGER.error("Cannot execute 'save' exhibit dao.", e);
             e.printStackTrace();
         }
     }
@@ -160,8 +215,8 @@ public class ExhibitDao {
             statement.execute();
 
         } catch (SQLException e) {
-            System.err.println("Cannot 'update' author dao.");
-            LOGGER.error("Cannot execute 'update' author dao.", e);
+            System.err.println("Cannot 'update' exhibit dao.");
+            LOGGER.error("Cannot execute 'update' exhibit dao.", e);
             e.printStackTrace();
         }
     }
@@ -176,8 +231,8 @@ public class ExhibitDao {
             statement.execute();
 
         } catch (SQLException e) {
-            System.err.println("Cannot execute 'delete' author dao.");
-            LOGGER.error("Cannot execute 'delete' author dao.", e);
+            System.err.println("Cannot execute 'delete' exhibit dao.");
+            LOGGER.error("Cannot execute 'delete' exhibit dao.", e);
             e.printStackTrace();
         }
     }

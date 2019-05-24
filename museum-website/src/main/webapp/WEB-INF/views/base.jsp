@@ -21,7 +21,12 @@
 <body>
 
     <tiles:insertAttribute name="header" />
-    <tiles:insertAttribute name="content" />
+    <tiles:insertAttribute name="filter-bar"/>
+    <div id="main-div" class="row">
+        <tiles:insertAttribute name="content" />
+    </div>
     <tiles:insertAttribute name="footer" />
 
 </body>
+
+<script src="${pageContext.request.contextPath}/static/scripts/exhibits.js"></script>

@@ -8,6 +8,7 @@
     <definition name="museum-website.base" template="/WEB-INF/views/base.jsp">
         <put-attribute name="title" value="Tiles tutorial homepage" />
         <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+        <put-attribute name="filter-bar" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
     </definition>
@@ -19,6 +20,7 @@
 
     <definition name="museum-website.exhibits" extends="museum-website.base">
         <put-attribute name="title" value="Exhibits"/>
+        <put-attribute name="filter-bar" value="/WEB-INF/views/exhibits-filter-bar.jsp"/>
         <put-attribute name="content" value="/WEB-INF/views/exhibits.jsp"/>
     </definition>
 
