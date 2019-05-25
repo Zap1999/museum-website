@@ -17,3 +17,6 @@ target/
 
 # Config
 db.properties
+
+# logs
+*.log

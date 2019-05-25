@@ -4,6 +4,7 @@ import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Exhibit;
 import com.softserve.academy.museum.entities.Hall;
 import com.softserve.academy.museum.entities.Position;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class HallDao {
+
+    private static final Logger LOGGER = Logger.getLogger(HallDao.class);
 
     private Connection connection = MySQLConnection.getConnection();
 
@@ -43,8 +46,9 @@ public class HallDao {
             return hall;
 
         } catch (SQLException e) {
-            System.err.println("Cannot execute 'getHallById' hall dao.");
+            System.err.println("Cannot execute 'getAll' hall dao.");
             e.printStackTrace();
+            LOGGER.error("Cannot execute 'getHallById' hall dao.", e);
             return null;
         }
 
@@ -82,6 +86,7 @@ public class HallDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getAll' hall dao.");
+            LOGGER.error("Cannot execute 'getAll' hall dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -99,6 +104,7 @@ public class HallDao {
             statement.execute();
 
         } catch (SQLException e) {
+            LOGGER.error("Cannot execute 'save' hall dao.", e);
             System.err.println("Cannot execute 'save' hall dao.");
             e.printStackTrace();
         }
@@ -117,6 +123,7 @@ public class HallDao {
             statement.execute();
 
         } catch (SQLException e) {
+            LOGGER.error("Cannot 'update' hall dao.", e);
             System.err.println("Cannot 'update' hall dao.");
             e.printStackTrace();
         }
@@ -132,6 +139,7 @@ public class HallDao {
             statement.execute();
 
         } catch (SQLException e) {
+            LOGGER.error("Cannot execute 'delete' hall dao.", e);
             System.err.println("Cannot execute 'delete' hall dao.");
             e.printStackTrace();
         }

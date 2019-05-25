@@ -3,6 +3,7 @@ package com.softserve.academy.museum.db;
 import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Excursion;
 import com.softserve.academy.museum.entities.Position;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class ExcursionDao {
 
+    private static final Logger LOGGER = Logger.getLogger(ExcursionDao.class);
     private Connection connection = MySQLConnection.getConnection();
 
     public Excursion getExcursionById(int id) {
@@ -44,6 +46,7 @@ public class ExcursionDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getExcursionById' excursion dao.");
+            LOGGER.error("Cannot execute 'getExcursionById' excursion dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -85,6 +88,7 @@ public class ExcursionDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getAll' excursion dao.");
+            LOGGER.error("Cannot execute 'getAll' excursion dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -125,6 +129,7 @@ public class ExcursionDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot 'update' excursion dao.");
+            LOGGER.error("Cannot execute 'update' excursion dao.", e);
             e.printStackTrace();
         }
     }
@@ -140,6 +145,7 @@ public class ExcursionDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'delete' author dao.");
+            LOGGER.error("Cannot execute 'delete' excursion dao.", e);
             e.printStackTrace();
         }
     }

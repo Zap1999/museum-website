@@ -1,6 +1,7 @@
 package com.softserve.academy.museum.db;
 
 import com.softserve.academy.museum.entities.*;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class ExhibitDao {
 
+    private static final Logger LOGGER = Logger.getLogger(ExhibitDao.class);
     private Connection connection = MySQLConnection.getConnection();
 
     public Exhibit getExhibitById(int id) {
@@ -58,6 +60,7 @@ public class ExhibitDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getAuthorById' author dao.");
+            LOGGER.error("Cannot execute 'getAuthorById' author dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -112,6 +115,7 @@ public class ExhibitDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'getAll' author dao.");
+            LOGGER.error("Cannot execute 'getAll' author dao.", e);
             e.printStackTrace();
             return null;
         }
@@ -134,6 +138,7 @@ public class ExhibitDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'save' author dao.");
+            LOGGER.error("Cannot execute 'save' author dao.", e);
             e.printStackTrace();
         }
     }
@@ -156,6 +161,7 @@ public class ExhibitDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot 'update' author dao.");
+            LOGGER.error("Cannot execute 'update' author dao.", e);
             e.printStackTrace();
         }
     }
@@ -171,6 +177,7 @@ public class ExhibitDao {
 
         } catch (SQLException e) {
             System.err.println("Cannot execute 'delete' author dao.");
+            LOGGER.error("Cannot execute 'delete' author dao.", e);
             e.printStackTrace();
         }
     }
