@@ -20,12 +20,12 @@ public class EmployeesByPositionServlet extends HttpServlet {
 
         String position = req.getParameter("position");
 
+        ArrayList<Employee> list;
         if (position.isEmpty()) {
-            resp.sendRedirect("");
-            return;
+            list = new EmployeeDao().getAll();
+        } else {
+            list = new EmployeeDao().getByPosition(Position.getPos(position));
         }
-
-        ArrayList<Employee> list = new EmployeeDao().getByPosition(Position.getPos(position));
         req.setAttribute("employees", list);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/employees.jsp");
