@@ -5,7 +5,7 @@ import com.softserve.academy.museum.entities.Author;
 
 import java.util.ArrayList;
 
-public class AllAuthorsService {
+public class AuthorService {
     public static AuthorDao authorDao = new AuthorDao();
 
     public ArrayList<Author> getAll(){

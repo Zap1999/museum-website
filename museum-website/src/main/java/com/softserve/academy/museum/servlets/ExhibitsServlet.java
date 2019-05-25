@@ -3,7 +3,7 @@ package com.softserve.academy.museum.servlets;
 import com.softserve.academy.museum.db.ExhibitDao;
 import com.softserve.academy.museum.entities.Author;
 import com.softserve.academy.museum.entities.Exhibit;
-import com.softserve.academy.museum.services.AllAuthorsService;
+import com.softserve.academy.museum.services.AuthorService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,11 +21,13 @@ public class ExhibitsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ArrayList<Author> authors = new AuthorService().getAll();
+        request.setAttribute("authors", authors);
+
         ArrayList<Exhibit> exhibits = new ExhibitDao().getAll();
         request.setAttribute("exhibits", exhibits);
 
-        ArrayList<Author> authors = new AllAuthorsService().getAll();
-        request.setAttribute("authors", authors);
         RequestDispatcher rd = request.getRequestDispatcher("/museum-website.exhibits.tiles");
         rd.forward(request,response);
     }

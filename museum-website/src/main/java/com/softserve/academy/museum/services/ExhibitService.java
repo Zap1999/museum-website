@@ -5,8 +5,17 @@ import com.softserve.academy.museum.entities.Exhibit;
 
 import java.util.ArrayList;
 
-public class ExhibitsByAuthorIdService {
+public class ExhibitService {
     public static ExhibitDao exhibitDao = new ExhibitDao();
+
+    public ArrayList<Exhibit> getAll(){
+        ArrayList<Exhibit> exhibits = exhibitDao.getAll();
+        if(exhibits != null){
+            return exhibits;
+        } else {
+            throw new NullPointerException("exhibitDao.getAll() returned null");
+        }
+    }
 
     public ArrayList<Exhibit> getByAuthorId(int authorId) {
         ArrayList<Exhibit> exhibits = exhibitDao.getByAuthorId(authorId);
