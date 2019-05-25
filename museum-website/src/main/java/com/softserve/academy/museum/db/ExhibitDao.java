@@ -176,6 +176,61 @@ public class ExhibitDao {
         }
     }
 
+    public ArrayList<Exhibit> getByHallId(int hallId) {
+        String query = "SELECT exhibit.id, exhibit.name, exhibit.material, "
+                + "exhibit.technique, exhibit.image, author.id, author.firstname, author.lastname, "
+                + "hall.id, hall.name, employee.id, employee.firstname, employee.lastname, position.name "
+                + "FROM exhibit join author on exhibit.author_id = author.id "
+                + "join hall on exhibit.hall_id = hall.id "
+                + "join employee on hall.employee_id = employee.id "
+                + "join position on employee.position = position.id "
+                + "WHERE hall.id = ?";
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, hallId);
+            ResultSet exhibitData = statement.executeQuery();
+
+            ArrayList<Exhibit> list = new ArrayList<>();
+            while (exhibitData.next()) {
+                Employee employee = new Employee();
+                Author author = new Author();
+                Hall hall = new Hall();
+                Exhibit exhibit = new Exhibit();
+
+                employee.setId(exhibitData.getInt("employee.id"));
+                employee.setFirstname(exhibitData.getNString("employee.firstname"));
+                employee.setLastname(exhibitData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(exhibitData.getNString("position.name")));
+
+                hall.setId(exhibitData.getInt("hall.id"));
+                hall.setName(exhibitData.getNString("hall.name"));
+                hall.setEmployee(employee);
+
+                author.setId(exhibitData.getInt("author.id"));
+                author.setFirstname(exhibitData.getNString("author.firstname"));
+                author.setLastname(exhibitData.getNString("author.lastname"));
+
+                exhibit.setId(exhibitData.getInt("exhibit.id"));
+                exhibit.setName(exhibitData.getNString("exhibit.name"));
+                exhibit.setMaterial(exhibitData.getNString("exhibit.material"));
+                exhibit.setTechnique(exhibitData.getNString("exhibit.technique"));
+                exhibit.setAuthor(author);
+                exhibit.setHall(hall);
+                exhibit.setImage(exhibitData.getNString("exhibit.image"));
+
+                list.add(exhibit);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            System.err.println("Cannot execute 'getByHallId' exhibit dao.");
+            LOGGER.error("Cannot execute 'getByHallId' exhibit dao.", e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void save(Exhibit exhibit) {
         String query = "INSERT INTO exhibit(id, name, material, technique, "
                 + "author_id, hall_id) "

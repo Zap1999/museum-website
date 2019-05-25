@@ -39,6 +39,11 @@
         <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByAuthorServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ExhibitsByHallServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByHallServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ExcursionsServlet</servlet-name>
         <url-pattern>/excursions</url-pattern>
@@ -57,6 +62,11 @@
     <servlet-mapping>
         <servlet-name>ExhibitsByAuthorServlet</servlet-name>
         <url-pattern>/exhibits/filterByAuthor</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExhibitsByHallServlet</servlet-name>
+        <url-pattern>/exhibits/filterByHall</url-pattern>
     </servlet-mapping>
 
 
