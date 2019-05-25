@@ -130,4 +130,34 @@ public class EmployeeDao {
         }
     }
 
+    public ArrayList<Employee> getByPosition(Position position) {
+
+        String query = "SELECT employee.id, employee.firstname, employee.lastname, "
+                + "position.name, employee.image "
+                + "FROM employee join position on employee.position = position.id "
+                + "WHERE position.name = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setNString(1, position.toString());
+            ResultSet employees = statement.executeQuery();
+
+            List<Employee> employeeList = new ArrayList<>();
+            while(employees.next()) {
+                Employee employee = new Employee();
+                employee.setId(employees.getInt("employee.id"));
+                employee.setFirstname(employees.getNString("employee.firstname"));
+                employee.setLastname(employees.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(employees.getNString("position.name")));
+                employee.setImage(employees.getNString("employee.image"));
+                employeeList.add(employee);
+            }
+
+            return (ArrayList<Employee>) employeeList;
+        } catch (SQLException e) {
+            System.err.println("Getting employee list by postition failed.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

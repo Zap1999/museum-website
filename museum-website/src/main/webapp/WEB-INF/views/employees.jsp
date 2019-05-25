@@ -1,5 +1,13 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<script src="${pageContext.request.contextPath}/scripts/employees.js"></script>
 <div id="main-div" >
+    <div id="filters" class="row">
+        <select id="posSelect" onchange="posChanged()" style="padding-left: 20px">
+            <option value="">Select a position</option>
+            <option value="manager">Manager</option>
+            <option value="guide">Guide</option>
+        </select>
+    </div>
     <div id="excursions-container" class ="row">
         <c:forEach items="${employees}" var="employee">
             <div class="col-md-1"></div>
