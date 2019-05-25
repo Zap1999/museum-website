@@ -28,6 +28,9 @@ $(document).ready(function() {
         } else if(filter === 'hall') {
             $('.filter-el').hide()
             $('.hall-filter').show()
+        } else if(filter === 'material') {
+            $('.filter-el').hide()
+            $('.material-filter').show()
         }
     })
 
@@ -40,6 +43,22 @@ $(document).ready(function() {
             type:'GET',
             data:{
                 hallId: hallId
+            },
+            success: function (response) {
+                $('#main-div').html(response)
+            }
+        })
+    })
+
+    $('#material-filter-button').click(function(){
+        event.preventDefault()
+
+        var material = $('#material').val()
+        $.ajax({
+            url:'exhibits/filterByMaterial',
+            type:'GET',
+            data:{
+                material: material
             },
             success: function (response) {
                 $('#main-div').html(response)

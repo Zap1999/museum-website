@@ -8,6 +8,7 @@
         <select id="select-filter">
             <option value="author" selected> Author </option>
             <option value="hall"> Hall </option>
+            <option value="material">Material</option>
         </select>
     </div>
     <div class="col-md-3 author-filter filter-el" >
@@ -37,5 +38,20 @@
     </div>
     <div class="col-md-3 hall-filter filter-el">
         <button id="hall-filter-button"> Do filter</button>
+    </div>
+
+
+    <div class="col-md-3 material-filter filter-el">
+        <select id="material" name="material">
+            <option value="" selected="selected">All materials</option>
+            <c:forEach items="${materials}" var="material">
+                <option value="<c:out value="${material}"/>">
+                    <c:out value="${material}"/>
+                </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="col-md-3 material-filter filter-el">
+        <button id="material-filter-button"> Do filter</button>
     </div>
 </div>

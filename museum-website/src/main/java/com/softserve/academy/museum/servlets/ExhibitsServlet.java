@@ -8,6 +8,7 @@ import com.softserve.academy.museum.entities.Hall;
 import com.softserve.academy.museum.services.AuthorService;
 import com.softserve.academy.museum.services.ExhibitService;
 import com.softserve.academy.museum.services.HallService;
+import com.softserve.academy.museum.services.MaterialService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ public class ExhibitsServlet extends HttpServlet {
     private static final AuthorService AUTHOR_SERVICE = new AuthorService();
     private static final ExhibitService EXHIBIT_SERVICE = new ExhibitService();
     private static final HallService HALL_SERVICE = new HallService();
+    private static final MaterialService MATERIAL_SERVICE = new MaterialService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -39,6 +41,9 @@ public class ExhibitsServlet extends HttpServlet {
 
         ArrayList<Hall> halls = HALL_SERVICE.getAll();
         request.setAttribute("halls", halls);
+
+        ArrayList<String> materials = MATERIAL_SERVICE.getAll();
+        request.setAttribute("materials", materials);
 
         RequestDispatcher rd = request.getRequestDispatcher("/museum-website.exhibits.tiles");
         rd.forward(request,response);

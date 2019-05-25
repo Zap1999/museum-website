@@ -34,4 +34,13 @@ public class ExhibitService {
             throw new NullPointerException("exhibitDao.getByAuthorId(int hallId) returned null");
         }
     }
+
+    public ArrayList<Exhibit> getByMaterial(String material){
+        ArrayList<Exhibit> exhibits = EXHIBIT_DAO.getByMaterial(material);
+        if(exhibits != null){
+            return exhibits;
+        } else {
+            throw new NullPointerException("exhibitDao.getByMaterial(String material) returned null");
+        }
+    }
 }
