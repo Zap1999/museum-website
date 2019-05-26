@@ -5,10 +5,7 @@ import com.softserve.academy.museum.entities.Excursion;
 import com.softserve.academy.museum.entities.Position;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ExcursionDao {
@@ -38,7 +35,7 @@ public class ExcursionDao {
             employee.setPosition(Position.getPos(excursionData.getNString("position.name")));
 
             excursion.setId(id);
-            excursion.setStart(excursionData.getTimestamp("excursion.start").toString());
+            excursion.setStart(excursionData.getTimestamp("excursion.start").toLocalDateTime());
             excursion.setDuration(excursionData.getInt("excursion.duration"));
             excursion.setEmployee(employee);
 
@@ -76,7 +73,7 @@ public class ExcursionDao {
 
                 excursion.setId(excursionsData.getInt("excursion.id"));
                 excursion.setName(excursionsData.getNString("excursion.name"));
-                excursion.setStart(excursionsData.getTimestamp("excursion.start").toString());
+                excursion.setStart(excursionsData.getTimestamp("excursion.start").toLocalDateTime());
                 excursion.setDuration(excursionsData.getInt("excursion.duration"));
                 excursion.setEmployee(employee);
 
@@ -102,7 +99,7 @@ public class ExcursionDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, excursion.getId());
             statement.setString(2, excursion.getName());
-            statement.setString(3, excursion.getStart());
+            statement.setTimestamp(3, Timestamp.valueOf(excursion.getStart()));
             statement.setInt(4, excursion.getDuration());
             statement.setInt(5, excursion.getEmployee().getId());
             statement.execute();
@@ -121,7 +118,7 @@ public class ExcursionDao {
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, excursion.getName());
-            statement.setString(2, excursion.getStart());
+            statement.setTimestamp(2, Timestamp.valueOf(excursion.getStart()));
             statement.setInt(3, excursion.getDuration());
             statement.setInt(4, excursion.getEmployee().getId());
             statement.setInt(5, excursion.getId());
