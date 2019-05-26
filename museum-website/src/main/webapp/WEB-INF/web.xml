@@ -39,6 +39,11 @@
         <servlet-class>com.softserve.academy.museum.servlets.EmployeesByPositionServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>EmployeesByDateServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.EmployeesByDateServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ExcursionsServlet</servlet-name>
         <url-pattern>/excursions</url-pattern>
@@ -59,7 +64,10 @@
         <url-pattern>/employees/filterByPosition</url-pattern>
     </servlet-mapping>
 
-
+    <servlet-mapping>
+        <servlet-name>EmployeesByDateServlet</servlet-name>
+        <url-pattern>/employees/filterByDate</url-pattern>
+    </servlet-mapping>
 
 
 
