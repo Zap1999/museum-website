@@ -21,6 +21,7 @@
 
     <definition name="museum-website.exhibits" extends="museum-website.base">
         <put-attribute name="title" value="Exhibits"/>
+        <put-attribute name="filterBar" value="/WEB-INF/views/exhibits-filter-bar.jsp"/>
         <put-attribute name="content" value="/WEB-INF/views/exhibits.jsp"/>
     </definition>
 

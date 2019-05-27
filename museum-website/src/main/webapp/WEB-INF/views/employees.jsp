@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <script src="${pageContext.request.contextPath}/scripts/employees.js"></script>
 
     <div id="excursions-container" class ="row">

@@ -30,3 +30,5 @@
     <tiles:insertAttribute name="footer" />
 
 </body>
+
+<script src="${pageContext.request.contextPath}/static/scripts/exhibits.js"></script>
