@@ -22,6 +22,7 @@ public class ExcursionsServlet extends HttpServlet {
 
         ArrayList<Excursion> excursions = new ExcursionDao().getAll();
         request.setAttribute("excursions", excursions);
+        request.setAttribute("excursionsCount", excursions.size());
         RequestDispatcher rd = request.getRequestDispatcher("/museum-website.excursions.tiles");
         rd.forward(request,response);
     }

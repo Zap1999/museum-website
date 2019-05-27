@@ -2,7 +2,10 @@
 <script src="${pageContext.request.contextPath}/scripts/excursions.js"></script>
 
     <div id="excursions-container" class ="row">
-
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+        <label>Excursions count: <c:out value="${excursionsCount}"/></label>
+        </div>
         <c:forEach items="${excursions}" var="excursion">
             <div class="col-md-1"></div>
             <div class = "col-md-10 row excursion-info">

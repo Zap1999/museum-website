@@ -37,6 +37,7 @@ public class ExcursionsFilterByDateServlet extends HttpServlet {
 
         }
         req.setAttribute("excursions", list);
+        req.setAttribute("excursionsCount", list.size());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/excursions.jsp");
         dispatcher.forward(req, resp);
