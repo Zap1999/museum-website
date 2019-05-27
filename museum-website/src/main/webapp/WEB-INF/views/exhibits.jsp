@@ -1,6 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-    <div id="main-div" class ="row">
         <c:forEach items="${exhibits}" var="exhibit">
         <div class = "col-md-3" >
             <div class="card">
@@ -19,4 +18,3 @@
             </div>
         </div>
         </c:forEach>
-    </div>

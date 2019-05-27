@@ -8,12 +8,14 @@
     <definition name="museum-website.base" template="/WEB-INF/views/base.jsp">
         <put-attribute name="title" value="Tiles tutorial homepage" />
         <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+        <put-attribute name="filterBar" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
     </definition>
 
     <definition name="museum-website.employees" extends="museum-website.base">
         <put-attribute name="title" value="Employees"/>
+        <put-attribute name="filterBar" value="/WEB-INF/views/employeesFilterBar.jsp"/>
         <put-attribute name="content" value="/WEB-INF/views/employees.jsp"/>
     </definition>
 
@@ -24,7 +26,10 @@
 
     <definition name="museum-website.excursions" extends="museum-website.base">
         <put-attribute name="title" value="Excursions"/>
+        <put-attribute name="filterBar" value="/WEB-INF/views/excursionsFilterBar.jsp"/>
         <put-attribute name="content" value="/WEB-INF/views/excursions.jsp"/>
     </definition>
+
+
 
 </tiles-definitions>

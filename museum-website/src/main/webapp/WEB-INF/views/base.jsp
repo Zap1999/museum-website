@@ -21,7 +21,12 @@
 <body>
 
     <tiles:insertAttribute name="header" />
-    <tiles:insertAttribute name="content" />
+    <tiles:insertAttribute name="filterBar"/>
+
+    <div id="main-div" class="row">
+        <tiles:insertAttribute name="content" />
+    </div>
+
     <tiles:insertAttribute name="footer" />
 
 </body>

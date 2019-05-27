@@ -1,22 +1,3 @@
-function posChanged() {
-
-        var pos = $("#posSelect option:selected").val();
-
-    $.ajax({
-        url:'employees/filterByPosition',
-        type:'GET',
-        data:{
-            position:pos
-        },
-        success: function (response) {
-            $('#main-div').html(response);
-        },
-        complete: function (data) {
-            $("#posSelect").val(pos);
-        }
-    })
-};
-
 function dateChanged() {
 
     var startDateOrigin = $("#dateStartSelect").val();
@@ -26,7 +7,7 @@ function dateChanged() {
 
     if (startDate && endDate) {
         $.ajax({
-            url: 'employees/filterByDate',
+            url: 'excursions/filterByDate',
             type: 'GET',
             data: {
                 startDate: startDate,
@@ -48,10 +29,11 @@ function clearDates() {
     $("#dateStartSelect").val('');
     $("#dateFinishSelect").val('');
     $.ajax({
-        url: 'employees/filterByPosition',
+        url: 'excursions/filterByDate',
         type: 'GET',
         data: {
-            position: ""
+            startDate: "null",
+            endDate: "null"
         },
         success: function (data) {
             $('#main-div').html(data);

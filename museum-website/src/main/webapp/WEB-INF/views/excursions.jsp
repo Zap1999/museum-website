@@ -1,6 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<script src="${pageContext.request.contextPath}/scripts/excursions.js"></script>
 
-<div id="main-div" >
     <div id="excursions-container" class ="row">
 
         <c:forEach items="${excursions}" var="excursion">
@@ -22,4 +22,3 @@
 
     </div>
 
-</div>

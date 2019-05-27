@@ -6,7 +6,9 @@ import com.softserve.academy.museum.entities.Position;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExcursionDao {
 
@@ -145,6 +147,48 @@ public class ExcursionDao {
             LOGGER.error("Cannot execute 'delete' excursion dao.", e);
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Excursion> getAvailableExcursions(LocalDateTime start, LocalDateTime end) {
+        String query = "SELECT excursion.id, excursion.start, excursion.duration, excursion.name, "
+                + "employee.id, employee.firstname, employee.lastname, employee.image, position.name "
+                + "FROM excursion join employee on excursion.employee_id = employee.id "
+                + "join position on employee.position = position.id "
+                + "WHERE excursion.start between ? and ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setTimestamp(1, Timestamp.valueOf(start));
+            statement.setTimestamp(2, Timestamp.valueOf(end));
+            ResultSet excursionRes = statement.executeQuery();
+
+            List<Excursion> excursionList = new ArrayList<>();
+            while(excursionRes.next()) {
+
+                Excursion excursion = new Excursion();
+                Employee employee = new Employee();
+
+                employee.setId(excursionRes.getInt("employee.id"));
+                employee.setFirstname(excursionRes.getNString("employee.firstname"));
+                employee.setLastname(excursionRes.getNString("employee.lastname"));
+                employee.setImage(excursionRes.getNString("employee.image"));
+                employee.setPosition(Position.getPos(excursionRes.getNString("position.name")));
+
+                excursion.setId(excursionRes.getInt("excursion.id"));
+                excursion.setStart(excursionRes.getTimestamp("excursion.start").toLocalDateTime());
+                excursion.setDuration(excursionRes.getInt("excursion.duration"));
+                excursion.setEmployee(employee);
+                excursion.setName(excursionRes.getNString("excursion.name"));
+
+                excursionList.add(excursion);
+            }
+
+            return (ArrayList<Excursion>) excursionList;
+        } catch (SQLException e) {
+            System.err.println("Getting free guides failed.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
