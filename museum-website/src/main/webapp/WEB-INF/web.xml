@@ -33,6 +33,31 @@
         <servlet-name>EmployeesServlet</servlet-name>
         <servlet-class>com.softserve.academy.museum.servlets.EmployeesServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>ExhibitsByAuthorServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByAuthorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExhibitsByHallServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByHallServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExhibitsByMaterialServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByMaterialServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExhibitsByTechniqueServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByTechniqueServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExhibitsByEmployeeServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByEmployeeServlet</servlet-class>
+    </servlet>
 
     <servlet>
         <servlet-name>EmployeesByPositionServlet</servlet-name>
@@ -60,6 +85,10 @@
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>ExhibitsByAuthorServlet</servlet-name>
+        <url-pattern>/exhibits/filterByAuthor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>EmployeesByPositionServlet</servlet-name>
         <url-pattern>/employees/filterByPosition</url-pattern>
     </servlet-mapping>
@@ -69,6 +98,22 @@
         <url-pattern>/employees/filterByDate</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>ExhibitsByHallServlet</servlet-name>
+        <url-pattern>/exhibits/filterByHall</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExhibitsByMaterialServlet</servlet-name>
+        <url-pattern>/exhibits/filterByMaterial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExhibitsByTechniqueServlet</servlet-name>
+        <url-pattern>/exhibits/filterByTechnique</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExhibitsByEmployeeServlet</servlet-name>
+        <url-pattern>/exhibits/filterByEmployee</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
