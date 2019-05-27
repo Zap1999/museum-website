@@ -4,10 +4,9 @@ import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Position;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -177,6 +176,78 @@ public class EmployeeDao {
             LOGGER.error("Cannot execute 'delete' employee dao.", e);
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Employee> getByPosition(Position position) {
+
+        String query = "SELECT employee.id, employee.firstname, employee.lastname, "
+                + "position.name, employee.image "
+                + "FROM employee join position on employee.position = position.id "
+                + "WHERE position.name = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setNString(1, position.toString());
+            ResultSet employees = statement.executeQuery();
+
+            List<Employee> employeeList = new ArrayList<>();
+            while(employees.next()) {
+                Employee employee = new Employee();
+                employee.setId(employees.getInt("employee.id"));
+                employee.setFirstname(employees.getNString("employee.firstname"));
+                employee.setLastname(employees.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(employees.getNString("position.name")));
+                employee.setImage(employees.getNString("employee.image"));
+                employeeList.add(employee);
+            }
+
+            return (ArrayList<Employee>) employeeList;
+        } catch (SQLException e) {
+            System.err.println("Getting employee list by postition failed.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Employee> getFreeGuides(LocalDateTime start, LocalDateTime end) {
+        String query = "SELECT employee.id, employee.firstname, employee.lastname, position.name, "
+                + "employee.image "
+                + "FROM employee join position on employee.position = position.id "
+                + "WHERE (position.name = 'guide') and "
+                + "employee.id NOT IN ( "
+                + "  select distinct employee.id "
+                + "from employee join position on employee.position = position.id "
+                + "join excursion on employee.id = excursion.employee_id "
+                + "where  ( excursion.start between ? and ?) "
+                + "or ( DATE_ADD(excursion.start, interval excursion.duration minute) "
+                + "between ? and ?));";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setTimestamp(1, Timestamp.valueOf(start));
+            statement.setTimestamp(2, Timestamp.valueOf(end));
+            statement.setTimestamp(3, Timestamp.valueOf(start));
+            statement.setTimestamp(4, Timestamp.valueOf(end));
+            ResultSet guides = statement.executeQuery();
+
+            List<Employee> guideList = new ArrayList<>();
+            while(guides.next()) {
+
+                Employee employee = new Employee();
+                employee.setId(guides.getInt("employee.id"));
+                employee.setFirstname(guides.getNString("employee.firstname"));
+                employee.setLastname(guides.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(guides.getNString("position.name")));
+                employee.setImage(guides.getNString("employee.image"));
+                guideList.add(employee);
+
+            }
+
+            return (ArrayList<Employee>) guideList;
+        } catch (SQLException e) {
+            System.err.println("Getting free guides failed.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

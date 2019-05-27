@@ -1,5 +1,6 @@
 package com.softserve.academy.museum.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ public class Excursion {
 
     private String name;
     private int id;
-    private String start;
+    private LocalDateTime start;
     private Employee employee;
     private int duration;
 
@@ -39,7 +40,7 @@ public class Excursion {
      *
      * @return String with date and time of the start.
      */
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
@@ -48,7 +49,7 @@ public class Excursion {
      *
      * @param start String with date and time of the start.
      */
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
