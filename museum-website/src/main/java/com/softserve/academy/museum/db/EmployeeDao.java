@@ -4,10 +4,10 @@ import com.softserve.academy.museum.entities.Employee;
 import com.softserve.academy.museum.entities.Position;
 import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeDao {
@@ -202,10 +202,34 @@ public class EmployeeDao {
 
             return (ArrayList<Employee>) guideList;
         } catch (SQLException e) {
-            System.err.println("Getting free guides failed.");
+            LOGGER.error("Getting free guides failed.", e);
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int getWorkTime(int id, LocalDateTime start, LocalDateTime end) {
+
+        String query = "SELECT SUM(excursion.duration) as s "
+                + "FROM employee join excursion on employee.id = excursion.employee_id "
+                + "WHERE employee.id = ? and excursion.start between ? and ?;";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.setTimestamp(2, Timestamp.valueOf(start));
+            statement.setTimestamp(3, Timestamp.valueOf(end));
+            ResultSet workTime = statement.executeQuery();
+            workTime.next();
+
+            return workTime.getInt("s");
+
+        } catch (SQLException e) {
+            LOGGER.error("getWorkTime method sql failed", e);
+            e.printStackTrace();
+        }
+        return -1;
+
     }
 
 }

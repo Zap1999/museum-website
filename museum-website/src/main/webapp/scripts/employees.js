@@ -58,3 +58,19 @@ function clearDates() {
         }
     })
 };
+
+function getWorkTime(elementId) {
+    var id = elementId.substring(21);
+    $.ajax({
+        url: 'employees/getWorkTime',
+        type: 'GET',
+        data: {
+            id: id,
+            startDate: $("#dateStartSelect-"+id).val().replace('T', ' '),
+            endDate: $("#dateFinishSelect-"+id).val().replace('T', ' ')
+        },
+        success: function (data) {
+            $("#workTime-" + id).text("Work time: " + data);
+        }
+    })
+}
