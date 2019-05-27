@@ -82,6 +82,48 @@ public class EmployeeDao {
 
     }
 
+    /**
+     * gets all managers that are set responsible for at least one hall
+     *
+     * @return
+     */
+    public ArrayList<Employee> getAllManagersOnHall() {
+        String query = "SELECT employee.id, employee.firstname, employee.lastname,"
+                + "position.name, employee.image "
+                + "FROM employee join position on employee.position = position.id "
+                + "JOIN hall ON hall.employee_id = employee.id "
+                + "WHERE position.name ='manager';";
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet employeesData = statement.executeQuery();
+
+            ArrayList<Employee> list = new ArrayList<>();
+            while (employeesData.next()) {
+
+                Employee employee = new Employee();
+
+                employee.setId(employeesData.getInt("employee.id"));
+                employee.setFirstname(employeesData.getNString("employee.firstname"));
+                employee.setLastname(employeesData.getNString("employee.lastname"));
+                employee.setPosition(Position.getPos(employeesData.getNString("position.name")));
+                employee.setImage(employeesData.getNString("employee.image"));
+
+                list.add(employee);
+
+            }
+
+            return list;
+
+        } catch (SQLException e) {
+            System.err.println("Cannot execute 'getAllManagersOnHall' employee dao.");
+            LOGGER.error("Cannot execute 'getAllManagerOnHall' employee dao.", e);
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public void save(Employee employee) {
         String query = "INSERT INTO employee(id, firstname, lastname, position) "
                 + "VALUES (?, ?, ?, ?) ";

@@ -31,7 +31,7 @@ public class ExhibitService {
         if(exhibits != null){
             return exhibits;
         } else {
-            throw new NullPointerException("exhibitDao.getByAuthorId(int hallId) returned null");
+            throw new NullPointerException("exhibitDao.getByHallId(int hallId) returned null");
         }
     }
 
@@ -50,6 +50,15 @@ public class ExhibitService {
             return exhibits;
         } else {
             throw new NullPointerException("exhibitDao.getByTechnique(String technique) returned null");
+        }
+    }
+
+    public ArrayList<Exhibit> getByEmployeeId(int employeeId){
+        ArrayList<Exhibit> exhibits = EXHIBIT_DAO.getByEmployeeId(employeeId);
+        if(exhibits != null){
+            return exhibits;
+        } else {
+            throw new NullPointerException("exhibitDao.getByEmployeeId(int employee) returned null");
         }
     }
 }

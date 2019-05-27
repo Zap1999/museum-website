@@ -3,22 +3,6 @@ $(document).ready(function() {
     $('.filter-el').hide()
     $('.author-filter').show()
 
-    $('#author-filter-button').click(function(){
-        event.preventDefault()
-
-        var authorId = $('#authorId').val()
-        $.ajax({
-            url:'exhibits/filterByAuthor',
-            type:'GET',
-            data:{
-                authorId:authorId
-            },
-            success: function (response) {
-                $('#main-div').html(response)
-            }
-        })
-    })
-
     $('#select-filter').change(function() {
         event.preventDefault()
         var filter = $('#select-filter').val()
@@ -34,8 +18,27 @@ $(document).ready(function() {
         } else if(filter === 'technique') {
             $('.filter-el').hide()
             $('.technique-filter').show()
+        } else if(filter === 'employee') {
+            $('.filter-el').hide()
+            $('.employee-filter').show()
         }
 
+    })
+
+    $('#author-filter-button').click(function(){
+        event.preventDefault()
+
+        var authorId = $('#authorId').val()
+        $.ajax({
+            url:'exhibits/filterByAuthor',
+            type:'GET',
+            data:{
+                authorId:authorId
+            },
+            success: function (response) {
+                $('#main-div').html(response)
+            }
+        })
     })
 
     $('#hall-filter-button').click(function(){
@@ -79,6 +82,22 @@ $(document).ready(function() {
             type:'GET',
             data:{
                 technique: technique
+            },
+            success: function (response) {
+                $('#main-div').html(response)
+            }
+        })
+    })
+
+    $('#employee-filter-button').click(function(){
+        event.preventDefault()
+
+        var employeeId= $('#employeeId').val()
+        $.ajax({
+            url:'exhibits/filterByEmployee',
+            type:'GET',
+            data:{
+                employeeId: employeeId
             },
             success: function (response) {
                 $('#main-div').html(response)
