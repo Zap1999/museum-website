@@ -9,6 +9,7 @@
             <option value="author" selected> Author </option>
             <option value="hall"> Hall </option>
             <option value="material">Material</option>
+            <option value="technique">Technique</option>
         </select>
     </div>
     <div class="col-md-3 author-filter filter-el" >
@@ -53,5 +54,19 @@
     </div>
     <div class="col-md-3 material-filter filter-el">
         <button id="material-filter-button"> Do filter</button>
+    </div>
+
+    <div class="col-md-3 technique-filter filter-el">
+        <select id="technique" name="technique">
+            <option value="" selected="selected">All techniques</option>
+            <c:forEach items="${techniques}" var="technique">
+                <option value="<c:out value="${technique}"/>">
+                    <c:out value="${technique}"/>
+                </option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="col-md-3 technique-filter filter-el">
+        <button id="technique-filter-button"> Do filter</button>
     </div>
 </div>

@@ -31,7 +31,11 @@ $(document).ready(function() {
         } else if(filter === 'material') {
             $('.filter-el').hide()
             $('.material-filter').show()
+        } else if(filter === 'technique') {
+            $('.filter-el').hide()
+            $('.technique-filter').show()
         }
+
     })
 
     $('#hall-filter-button').click(function(){
@@ -59,6 +63,22 @@ $(document).ready(function() {
             type:'GET',
             data:{
                 material: material
+            },
+            success: function (response) {
+                $('#main-div').html(response)
+            }
+        })
+    })
+
+    $('#technique-filter-button').click(function(){
+        event.preventDefault()
+
+        var technique = $('#technique').val()
+        $.ajax({
+            url:'exhibits/filterByTechnique',
+            type:'GET',
+            data:{
+                technique: technique
             },
             success: function (response) {
                 $('#main-div').html(response)

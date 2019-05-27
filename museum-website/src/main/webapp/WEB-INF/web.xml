@@ -49,6 +49,11 @@
         <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByMaterialServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ExhibitsByTechniqueServlet</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExhibitsByTechniqueServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ExcursionsServlet</servlet-name>
         <url-pattern>/excursions</url-pattern>
@@ -77,7 +82,10 @@
         <servlet-name>ExhibitsByMaterialServlet</servlet-name>
         <url-pattern>/exhibits/filterByMaterial</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ExhibitsByTechniqueServlet</servlet-name>
+        <url-pattern>/exhibits/filterByTechnique</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
