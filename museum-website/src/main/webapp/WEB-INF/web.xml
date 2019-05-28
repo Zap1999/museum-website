@@ -79,6 +79,11 @@
         <servlet-class>com.softserve.academy.museum.servlets.WorkTimeByDateServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ExcursionsCountForEmployee</servlet-name>
+        <servlet-class>com.softserve.academy.museum.servlets.ExcursionsCountForEmployee</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ExcursionsServlet</servlet-name>
         <url-pattern>/excursions</url-pattern>
@@ -137,6 +142,11 @@
     <servlet-mapping>
         <servlet-name>WorkTimeByDateServlet</servlet-name>
         <url-pattern>/employees/getWorkTime</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExcursionsCountForEmployee</servlet-name>
+        <url-pattern>/employees/getExcursionsCount</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -73,4 +73,20 @@ function getWorkTime(elementId) {
             $("#workTime-" + id).text("Work time: " + data);
         }
     })
-}
+};
+
+function getExcursionsCount(elementId) {
+    var id = elementId.substring(22);
+    console.log(id);
+    $.ajax({
+        url: 'employees/getExcursionsCount',
+        type: 'GET',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            console.log(data);
+            $("#excursionsCount-" + id).text("Excursions done: " + data);
+        }
+    })
+};

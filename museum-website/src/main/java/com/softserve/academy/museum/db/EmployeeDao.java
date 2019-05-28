@@ -274,4 +274,24 @@ public class EmployeeDao {
 
     }
 
+    public int getExcursionsCount(int id) {
+        String query = "SELECT count(excursion.id) as cnt "
+                + "FROM employee join excursion on employee.id = excursion.employee_id "
+                + "WHERE employee.id = ?;";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet excursionsTime = statement.executeQuery();
+            excursionsTime.next();
+
+            return excursionsTime.getInt("cnt");
+
+        } catch (SQLException e) {
+            LOGGER.error("getWorkTime method sql failed", e);
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }

@@ -24,7 +24,8 @@
                         <br>
                         <label id="workTime-${employee.id}">Work time: ---</label>
                         <br>
-                        <label>Excursions done: ---</label>
+                        <label id="excursionsCount-${employee.id}">Excursions done: ---</label>
+                        <button id="excursionsCountButton-${employee.id}" onclick="getExcursionsCount(this.id)">Get count of excursions</button>
                     </c:if>
                 </div>
             </div>
